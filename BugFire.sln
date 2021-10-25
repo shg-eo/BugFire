@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BugFire", "BugFire.vcxproj", "{65562963-81BD-4631-876B-52C36492F4C3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{65562963-81BD-4631-876B-52C36492F4C3}.Debug|x64.ActiveCfg = Debug|x64
+		{65562963-81BD-4631-876B-52C36492F4C3}.Debug|x64.Build.0 = Debug|x64
+		{65562963-81BD-4631-876B-52C36492F4C3}.Release|x64.ActiveCfg = Release|x64
+		{65562963-81BD-4631-876B-52C36492F4C3}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ACDFB7E2-94F6-41B0-AA30-8E36EC7F2171}
+	EndGlobalSection
+EndGlobal
