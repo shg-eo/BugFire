@@ -15,4 +15,4 @@ Not impremented.
 and so on...
 
 This code uses [OpenSiv3D](https://siv3d.github.io/).
-If you want to run, please install Siv3D.
+If you want to build it, please install OpenSiv3D.
