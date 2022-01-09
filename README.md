@@ -37,15 +37,15 @@ Currently I'm checking detail of license.
 I'll change the license.
 
 ## Screen shots.
-![Title](pic/01Title.png)
+![Title](Pic/01Title.png)
 
-![Chukan](pic/02Chukan.png)
+![Chukan](Pic/02Chukan.png)
 
-![Game1](pic/Game1.png)
-![Game2](pic/Game2.png)
-![Game3](pic/Game3.png)
-![Game4](pic/Game4.png)
-![Game5](pic/Game5.png)
+![Game1](Pic/Game1.png)
+![Game2](Pic/Game2.png)
+![Game3](Pic/Game3.png)
+![Game4](Pic/Game4.png)
+![Game5](Pic/Game5.png)
 
 
 
