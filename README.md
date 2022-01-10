@@ -8,13 +8,16 @@ You can play the game, with "BugFire.exe" only.
 - No color flicker of walls or a man. (No plan of implementation, but i feel it cool...).  
 (It is PC-8001's CRTC and programming limitation)
 
+- Using 16dot Font, not PC-8001 font. (License limitation)  
+Pictures in the document is with PC-8001 font.
+
 ## Bugs (not a character in game, but programming bugs)
-- No game over with time limit or score < 0.  
-- A new BUG (after all bugs killed, new one BUG appears) moves not smooth.
+- No "Game Over" with time limit or score < 0.  
+- ~~A new BUG (after all bugs killed, new one BUG appears) moves not smooth.~~
 - BUGs can not eat the man, when crossing a BUG and a man.
 (But it's funny)
 - Disappear exit path, after you were killed by a new BUG (after killing all BUGs, a bug will appear).  
-  You need to kill the new BUG.
+  You need to ~~kill the new BUG~~. Restart...
 
 and so on...
 
