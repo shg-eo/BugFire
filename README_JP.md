@@ -1,4 +1,4 @@
-[English](.md)
+[English](index.md)
 # BugFire
 PC-8001 の BUG FIRE! をWindowsで。
 ![Game3](https://raw.githubusercontent.com/shg-eo/BugFire/master/Pic/Game3.png)
