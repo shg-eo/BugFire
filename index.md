@@ -1,5 +1,5 @@
 [Japanese](index_jp.md)
-# BugFire 
+
 PC-8001 BUG FIRE! on Windows.
 
 It is a game, similar "BUG FIRE!" for PC-8001, almost same.  
