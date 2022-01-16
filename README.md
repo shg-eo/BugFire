@@ -1,4 +1,4 @@
-[Japanese](README_JP.md)
+[Japanese](index_JP.md)
 # BugFire 
 PC-8001 BUG FIRE! on Windows.
 
