@@ -1,3 +1,4 @@
+[English](README.md)
 # BugFire
 PC-8001 の BUG FIRE! をWindowsで。
 
