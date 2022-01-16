@@ -1,37 +1,46 @@
-## Welcome to GitHub Pages
+[Japanese](README_JP.md)
+# BugFire 
+PC-8001 BUG FIRE! on Windows.
 
-You can use the [editor on GitHub](https://github.com/shg-eo/BugFire/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+It is a game, similar "BUG FIRE!" for PC-8001, almost same.  
+You can play the game, with "App/BugFire.exe" only.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Limitation
+- No color flicker of walls or a man. (No plan of implementation, but i feel it cool...).  
+(It is PC-8001's CRTC and programming limitation)
 
-### Markdown
+- Using 16dot Font, not PC-8001 font. (License limitation)  
+Pictures in the document is with PC-8001 font.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+- Different position to attack a bug no sleeping.  
+Original: bug's neighbour.  
+This game: bug.
 
-```markdown
-Syntax highlighted code block
+## Bugs (not a character in game, but programming bugs)
+- ~~No "Game Over" with time limit or score < 0.~~  
+- ~~A new BUG (after all bugs killed, new one BUG appears) moves not smooth.~~
+- BUGs sometimes can not eat the man, when crossing a BUG and a man.
+(But it's funny)
+- ~~Disappear exit path, after you were killed by a new BUG (after killing all BUGs, a bug will appear).  
+  You need to kill the new BUG. **Restart...**~~
 
-# Header 1
-## Header 2
-### Header 3
+and so on...
 
-- Bulleted
-- List
+But you can enjoy it, maybe.
 
-1. Numbered
-2. List
+## Difference from Original.
+### Key binding.  
+* Arrow or "WASD" keys also to control the man, too.  
+* ESC key to pause the game.
 
-**Bold** and _Italic_ and `Code` text
+## Build
+This code uses [OpenSiv3D](https://siv3d.github.io/).
+Special thanks for OpenSiv3D!.
 
-[Link](url) and ![Image](src)
-```
+## License
+DO NOT GIVE/COPY/... OTHER PERSON/WEB SITE/... THE SOFTWARE.  
+YOU CAN GET THE SOFTWARE FROM THIS SITE OLY.   
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+Currently I'm checking detail of license.
+I'll change the license.
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/shg-eo/BugFire/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
