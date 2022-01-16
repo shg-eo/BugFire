@@ -1,6 +1,7 @@
-[English](README.md)
+[English](.md)
 # BugFire
 PC-8001 の BUG FIRE! をWindowsで。
+![Game3](https://raw.githubusercontent.com/shg-eo/BugFire/master/Pic/Game3.png)
 
 このゲームは、PC-8001の“BUG FIRE!”を移植したものです。  
 App/BugFire.exe をダウンロードするだけで、ゲームを楽しめます。  
