@@ -1,4 +1,4 @@
-[Japanese](README_JP.md)
+[日本語](index_JP.md)
 # BugFire 
 PC-8001 BUG FIRE! on Windows.  
 ![Game3](https://raw.githubusercontent.com/shg-eo/BugFire/master/Pic/Game3.png)
