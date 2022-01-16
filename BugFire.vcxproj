@@ -297,6 +297,7 @@
     <None Include="App\file2.bin" />
     <None Include="cpp.hint" />
     <None Include="README.md" />
+    <None Include="README_JP.md" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="App\example\shot.mp3" />

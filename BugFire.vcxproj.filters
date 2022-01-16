@@ -736,6 +736,7 @@
     <None Include="App\file2.bin">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="README_JP.md" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="App\example\test.mp3">

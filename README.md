@@ -2,7 +2,7 @@
 PC-8001 BUG FIRE! on Windows.
 
 It is a game, similar "BUG FIRE!" for PC-8001, almost same.  
-You can play the game, with "BugFire.exe" only.
+You can play the game, with "App/BugFire.exe" only.
 
 ## Limitation
 - No color flicker of walls or a man. (No plan of implementation, but i feel it cool...).  
@@ -11,13 +11,17 @@ You can play the game, with "BugFire.exe" only.
 - Using 16dot Font, not PC-8001 font. (License limitation)  
 Pictures in the document is with PC-8001 font.
 
+- Different position to attack a bug no sleeping.  
+Original: bug's neighbour.  
+This game: bug.
+
 ## Bugs (not a character in game, but programming bugs)
-- No "Game Over" with time limit or score < 0.  
+- ~~No "Game Over" with time limit or score < 0.~~  
 - ~~A new BUG (after all bugs killed, new one BUG appears) moves not smooth.~~
 - BUGs sometimes can not eat the man, when crossing a BUG and a man.
 (But it's funny)
-- Disappear exit path, after you were killed by a new BUG (after killing all BUGs, a bug will appear).  
-  You need to ~~kill the new BUG~~. Restart...
+- ~~Disappear exit path, after you were killed by a new BUG (after killing all BUGs, a bug will appear).  
+  You need to kill the new BUG. **Restart...**~~
 
 and so on...
 
