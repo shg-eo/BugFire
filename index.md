@@ -1,7 +1,7 @@
 [Japanese](README_JP.md)
 # BugFire 
 PC-8001 BUG FIRE! on Windows.  
-![Title](https://github.com/shg-eo/BugFire/blob/master/Pic/Game3.png?raw=true)
+![Game3](https://github.com/shg-eo/BugFire/blob/master/Pic/Game3.png?raw=true)
 
 It is a game, similar "BUG FIRE!" for PC-8001, almost same.  
 You can play the game, with "App/BugFire.exe" only.
