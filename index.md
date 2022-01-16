@@ -1,6 +1,6 @@
 [Japanese](README_JP.md)
 # BugFire 
-PC-8001 BUG FIRE! on Windows.
+PC-8001 BUG FIRE! on Windows.  
 ![Game3](Pic/Game3.png)
 
 It is a game, similar "BUG FIRE!" for PC-8001, almost same.  
