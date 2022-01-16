@@ -44,3 +44,14 @@ YOU CAN GET THE SOFTWARE FROM THIS SITE OLY.
 Currently I'm checking detail of license.
 I'll change the license.
 
+## Screen shots.
+![Title](Pic/01Title.png)
+
+![Chukan](Pic/02Chukan.png)
+
+![Game1](Pic/Game1.png)
+![Game2](Pic/Game2.png)
+![Game3](Pic/Game3.png)
+![Game4](Pic/Game4.png)
+![Game5](Pic/Game5.png)
+
