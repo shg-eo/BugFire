@@ -288,60 +288,139 @@ public:
 };
 
 //
-class OpeningDemo : public App::Scene
+class Title : public App::Scene
 {
 private:
+	int waitframecount;
 	enum showorder : int
 	{
 		normal = 0,
-		typing = 1,
-		wait = 2,
-
+		typing = 1,	// 1文字ずつ表示
+		waittyping = 3,
 	};
 
-	/*
-	struct demos {
+	typedef struct {
 		showorder o;
 		s3d::String m;
+	} demos;
+
+	demos demomessage[5] = {
+		{normal, U" Ｏｋ"},
+		{typing, U" ｍｏｎ"},
+		{typing, U" ＊Ｌ"},
+		{waittyping, U" ＊ＧＥ３ＣＣ"},
+		{typing, U"  "},
 	};
-	Array <demos> demomessage = {
-		{normal, "ｍｏｎ"},
-		{typing, "＊Ｌ"},
-		{wait, "＊ＧＥ３ＣＣ"}
-	};
-*/
-	int waitframecount;
+
+	template <typename T, std::size_t N>
+	inline std::size_t sizeOfArray(const T(&)[N])
+	{
+		return N;
+	}
+
+	double spawntyping= 0.2; // frames;
+	double spawnwaittyping = 1;
+	double spawnnormal = 0.01;
+	int x = 0, l = 0, meslines;
+	double spawntime, accumlator;
+	int maxlen;
+
 public:
 
 	// コンストラクタ（必ず実装）
-	OpeningDemo(const InitData& init)
+	Title(const InitData& init)
 		: IScene{ init }
 	{
-		waitframecount = 300;
-
-
+		meslines = (int)sizeOfArray(demomessage);
+		l = 0;
+		spawntime = spawntyping;
+		accumlator = 0;
+		maxlen = 0;
+		for (int i = 0; i < meslines; i++) {
+			maxlen += (int)demomessage[i].m.size();
+		}
 	}
 
 	// 更新関数（オプション）
 	void update() override
 	{
+		if (x != 0) {
+			if (spawntime == spawnwaittyping)
+			{
+				spawntime = spawntyping;
+			}
+		}
 
+		accumlator += Scene::DeltaTime();
+		if (accumlator >= spawntime)
+		{
+			accumlator -= spawntime;
+			// go ahead;
+			x++;
+			if (x > demomessage[l].m.size())
+			{
+				x = 0;
+				l++;
+				switch (demomessage[l].o)
+				{
+				case waittyping:
+					spawntime = spawnwaittyping;
+					break;
+				case typing:
+					spawntime = spawntyping;
+					break;
+				case normal:
+					spawntime = spawnnormal;
+					break;
+				}
+			}
+		}
+
+		if (l >= meslines) {
+			l = meslines-1;
+			// next schene;
+			changeScene(U"Title2", 0s);
+		}
 	}
 
 	// 描画関数（オプション）
 	void draw() const override
 	{
-		Scene::SetBackground(ColorF{ 0.3, 0.4, 0.5 });
+		// Scene::SetBackground(ColorF{ 0.3, 0.4, 0.5 });
+		// FontAsset(U"TitleFont")(U"My Game").drawAt(400, 100);
+		// Circle{ Cursor::Pos(), 50 }.draw(Palette::Orange);
 
-		FontAsset(U"TitleFont")(U"My Game").drawAt(400, 100);
 
-		Circle{ Cursor::Pos(), 50 }.draw(Palette::Orange);
+		// int ly = 0, lx = 20;
+		// for (int i = 0; i < showingmessage.size(); i++)
+		// {
+		// 	s3d::String m = showingmessage[i];
+		// 	FontAsset(U"PC8001")(m).draw(lx, ly, Palette::Lightgreen);
+
+		// 	ly += 24;
+		// }
+		for (int yy = 0; yy <= l; yy++)
+		{
+			String m = demomessage[yy].m;
+			if (yy == l )
+			{
+				if (demomessage[yy].o != normal)
+				{
+					int t = m.size();
+					for (int xx = 0; xx < (t - x - 1); xx++)
+					{
+						m.pop_back();
+					}
+				}
+			}
+			FontAsset(U"PC8001")(m).draw(20, yy * 24 + 24, Palette::Lightgreen);
+		}
 	}
 };
 
 
 // Title Scene
-class Title : public App::Scene
+class Title2 : public App::Scene
 {
 private:
 	int state = 0;
@@ -368,7 +447,7 @@ private:
 
 public:
 	int SoundState = -1; // 1:EnableSound, 0:Mute Sound
-	Title(const InitData& init)
+	Title2(const InitData& init)
 		: IScene{ init }
 	{
 		SoundState = -1;
@@ -376,7 +455,7 @@ public:
 		framerate = 0;
 	}
 
-	~Title()
+	~Title2()
 	{
 		// 計測したframerateを設定
 		//getData().spawnTime = framerate * 2.05;
@@ -2207,6 +2286,7 @@ void Main()
 	App manager;
 
 	manager.add<Title>(U"Title");
+	manager.add<Title2>(U"Title2");
 	manager.add<Instruction>(U"Instruction");
 	manager.add<InitGame>(U"InitGame");   // ゲーム開始
 	manager.add<InitScreen>(U"InitScreen"); // 面の初期化
@@ -2216,7 +2296,7 @@ void Main()
 
 	//manager.add<DebugDraw>(U"DebugDraw");
 	//manager.init(U"DebugDraw");
-//	manager.init(U"GameOver");
+    //manager.init(U"GameOver");
 
 	Scene::SetResizeMode(ResizeMode::Keep);
 	Window::SetStyle(WindowStyle::Sizable);

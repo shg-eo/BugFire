@@ -14,7 +14,7 @@ Pictures in the document is with PC-8001 font.
 ## Bugs (not a character in game, but programming bugs)
 - No "Game Over" with time limit or score < 0.  
 - ~~A new BUG (after all bugs killed, new one BUG appears) moves not smooth.~~
-- BUGs can not eat the man, when crossing a BUG and a man.
+- BUGs sometimes can not eat the man, when crossing a BUG and a man.
 (But it's funny)
 - Disappear exit path, after you were killed by a new BUG (after killing all BUGs, a bug will appear).  
   You need to ~~kill the new BUG~~. Restart...
