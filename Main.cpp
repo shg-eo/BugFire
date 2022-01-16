@@ -9,6 +9,7 @@
 
 // BUGの個数
 constexpr int bugs = 8;
+constexpr int players = 3;
 
 // stopper, bug sleeping time
 constexpr int sleeptime = 350;
@@ -413,7 +414,7 @@ public:
 					}
 				}
 			}
-			FontAsset(U"PC8001")(m).draw(20, yy * 24 + 24, Palette::Lightgreen);
+			FontAsset(U"PC8001")(m).draw(20, yy * 24 + 24, Palette::White);
 		}
 	}
 };
@@ -762,10 +763,8 @@ public:
 	{
 		global.stopwatch.start();
 		getData().score = 0;
-		getData().men = 3;
+		getData().men = players;
 		getData().screen = 0;
-
-
 	};
 
 	~InitGame()
@@ -1398,6 +1397,21 @@ public:
 			cbug[i].y = -1;
 		}
 
+		// すべてのバグを消したときの処理
+		if (getData().bugs == 0)
+		{
+			drawmap.map[(drawmap.width - 1) / 2][0] = PATH; // Exit
+			cbug[0].x = CWIDTH / 2 + 1;
+			cbug[0].y = 1;
+			cbug[0].py = CWIDTH / 2 + 1;
+			cbug[0].px = 1;
+			cbug[0].direction = DIRDOWN;
+			cbug[0].sleep = 0;
+			cbug[0].character = BUG;
+			cbug[0].live = true;
+		}
+
+
 #ifdef _DEBUG_
 		if (DEBUG)
 		{
@@ -1507,14 +1521,22 @@ public:
 				{//stop erase
 					timer.reset();
 
-					if (playerstate == DEAD)
+					if ((playerstate == DEAD)
+						||
+						(getData().score < 0))
 					{
 						int p = (getData().men -= 1);
-						if (p <= 0)
+						if ((p <= 0)
+							||
+							(getData().score < 0))
 						{
 #ifdef _DEBUG4_
 							getData().score = 10;
 #endif
+							if (getData().score < 0)
+							{
+								getData().score = 0;
+							}
 							changeScene(U"GameOver", 0s);
 						}
 						else
@@ -2251,8 +2273,13 @@ public:
 		}
 		// Rightside info
 		int ly = 24 * 3, lx = 58 * 12;
+		int s = getData().score;
+		if (s < 0)
+		{
+			s = 0;
+		}
 		FontAsset(U"PC8001")(U"SCORE").draw(lx, ly);
-		FontAsset(U"PC8001")(U"{:0>6}"_fmt(getData().score)).draw(lx, ly + 24 * 2);
+		FontAsset(U"PC8001")(U"{:0>6}"_fmt(s)).draw(lx, ly + 24 * 2);
 		FontAsset(U"PC8001")(U"TIME").draw(lx, ly + 24 * 6);
 		FontAsset(U"PC8001")(U"{:0>2}"_fmt(getData().time)).draw(lx, ly + 24 * 8);
 		FontAsset(U"PC8001")(U"ALIEN").draw(lx, ly + 24 * 10);
