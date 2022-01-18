@@ -1,6 +1,6 @@
 [English](README.md)
 # BugFire
-PC-8001 の BUG FIRE! をWindowsで。
+PC-8001 の BUG FIRE! をWindowsで。  
 ![Game0](Pic/Game0.png)
 
 このゲームは、PC-8001の“BUG FIRE!”を移植したものです。  
