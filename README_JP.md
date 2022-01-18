@@ -1,6 +1,7 @@
 [English](README.md)
 # BugFire
 PC-8001 の BUG FIRE! をWindowsで。
+![Game0](Pic/Game0.png)
 
 このゲームは、PC-8001の“BUG FIRE!”を移植したものです。  
 App/BugFire.exe をダウンロードするだけで、ゲームを楽しめます。  
@@ -55,4 +56,6 @@ OpenSiv3D の作者とそれに賛同されるすべての方に感謝いたし�
 ![Game3](Pic/Game3.png)
 ![Game4](Pic/Game4.png)
 ![Game5](Pic/Game5.png)
+
+Copyright © 2021,2022 shg-eo as SAKUMA, Shigeo. All rights reserved.
 

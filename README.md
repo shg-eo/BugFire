@@ -1,6 +1,7 @@
-[Japanese](README_JP.md)
+﻿[Japanese](README_JP.md)
 # BugFire 
 PC-8001 BUG FIRE! on Windows.
+![Game0](Pic/Game0.png)
 
 It is a game, similar "BUG FIRE!" for PC-8001, almost same.  
 You can play the game, with "App/BugFire.exe" only.
@@ -45,7 +46,7 @@ Currently I'm checking detail of license.
 I'll change the license.
 
 ## Screen shots.
-![Title](Pic/01Title.png)
+![Title](https://github.com/shg-eo/BugFire/blob/master/Pic/01Title.png)
 
 ![Chukan](Pic/02Chukan.png)
 
@@ -55,6 +56,5 @@ I'll change the license.
 ![Game4](Pic/Game4.png)
 ![Game5](Pic/Game5.png)
 
-
-
+Copyright © 2021,2022 shg-eo as SAKUMA, Shigeo. All rights reserved.
 
