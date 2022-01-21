@@ -1,6 +1,8 @@
 [日本語](index_JP.md)
 # BugFire 
 PC-8001 BUG FIRE! on Windows.  
+[YouTube](https://www.youtube.com/watch?v=eL5zOH_6P_U)
+
 ![Game3](https://raw.githubusercontent.com/shg-eo/BugFire/master/Pic/Game3.png)
 
 It is a game, similar "BUG FIRE!" for PC-8001, almost same.  
