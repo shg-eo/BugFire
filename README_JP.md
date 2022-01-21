@@ -1,7 +1,8 @@
 [English](README.md)
 # BugFire
 PC-8001 の BUG FIRE! をWindowsで。  
-![Game0](Pic/Game0.png)
+[![Game0](Pic/Game0.png)](https://www.youtube.com/watch?v=eL5zOH_6P_U)  
+[YouTube](https://www.youtube.com/watch?v=eL5zOH_6P_U)
 
 このゲームは、PC-8001の“BUG FIRE!”を移植したものです。  
 App/BugFire.exe をダウンロードするだけで、ゲームを楽しめます。  
