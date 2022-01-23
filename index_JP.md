@@ -20,9 +20,9 @@ App/BugFire.exe をダウンロードするだけで、ゲームを楽しめま�
 
 ## 操作キー
 * 移動 : 矢印 / W,A,S,D / 2,4,6,8
-* Stopper : スペース / X
-* Hammer : Ctrl / Shift
-* Pause : ESC
+* ストッパー : スペース / X
+* ハンマー : Ctrl / Shift
+* 中断 : ESC
 
 ## License
 個人の範囲を超える複製や譲渡を一切禁止します。  
