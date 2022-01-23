@@ -31,8 +31,7 @@ App/BugFire.exe をダウンロードするだけで、ゲームを楽しめま�
 確認出来次第、ライセンスの変更と表示を行う予定です。  
 
 ## ダウンロード
-## Download
-[リリース](https://github.com/shg-eo/BugFire/releases)  
+[リリース ページ](https://github.com/shg-eo/BugFire/releases) から、
 **ZIP** ファイルをダウンロード、展開してください。  
 **BugFire.exe** をクリックすると、ゲームを楽しめます。  
 
