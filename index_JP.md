@@ -1,7 +1,7 @@
 [English](index.md)
 # BugFire 
 ### ![Game](https://raw.githubusercontent.com/shg-eo/BugFire/master/Pic/Game0.png)
-### [YouTube](https://www.youtube.com/watch?v=eL5zOH_6P_U)  
+### [YouTube](https://youtu.be/eL5zOH_6P_U)  
 ### PC-8001 の BUG FIRE! をWindowsで
 
 このゲームは、PC-8001の“BUG FIRE!”を移植したものです。  
