@@ -1841,8 +1841,8 @@ public:
 #endif
 			nextDir = DIRSTOP;
 
-			Vector v;
-			v.next(mandirection);
+			Vector vec;
+			vec.next(mandirection);
 #ifdef _DEBUG4_
 				String s;
 				for (int i = 0; i < bugs; i++) {
@@ -1851,7 +1851,7 @@ public:
 				Console << s;
 #endif
 			if (
-				((drawmap.map[hx + v.dx][hy + v.dy] & CDMASK) == BUG)
+				((drawmap.map[hx + vec.dx][hy + vec.dy] & CDMASK) == BUG)
 				||
 				((drawmap.map[hx][hy] & CDMASK) == SLPBUG)
 				||
@@ -1873,8 +1873,8 @@ public:
 					((drawmap.map[hx][hy] & CDMASK) == BUG)
 					)
 				{
-					v.dx = 0;
-					v.dy = 0;
+					vec.dx = 0;
+					vec.dy = 0;
 				}
 #ifdef _DEBUG4_
 				s3d::Console << U"Hummer::BUG";
@@ -1889,7 +1889,7 @@ public:
 					if (
 						((cbug[i].x == hx) && (cbug[i].y == hy))
 						||
-						((cbug[i].x == hx + v.dx) && (cbug[i].y == hy + v.dy))
+						((cbug[i].x == hx + vec.dx) && (cbug[i].y == hy + vec.dy))
 						)
 					{
 						if (cbug[i].live)
@@ -1918,7 +1918,7 @@ public:
 					}
 					getData().bugs = bs;
 
-					drawmap.map[hx + v.dx][hy + v.dy] = PATH;
+					drawmap.map[hx + vec.dx][hy + vec.dy] = PATH;
 					drawmap.map[hx][hy] = HUMBUG + mandirection;
 					drawmap.map[cx][cy] = HUMMAN + mandirection;
 
