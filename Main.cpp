@@ -1,15 +1,31 @@
-﻿#include <Windows.h>
+﻿/*======================================================================
+Project Name : BUG FIRE!
+File Name : Main.cpp
+Creation Date : Oct/15/2021
+
+Copyright © 2021,2022 shg-eo as SAKUMA, Shigeo. All rights reserved.
+======================================================================*/
+#include <Windows.h>
 # include <Siv3D.hpp> // OpenSiv3D v0.6.2
+
+// global variable.
+// configuration, high score, global status.
+struct Global
+{
+	int players = 3;	//conf
+	int bugs = 8;	//conf
+	int highscore = 0;	// high-score
+	boolean ingame = false;	// global status;
+	Stopwatch stopwatch;	//
+	boolean enableSound = false;	//conf
+	boolean NODEAD = false;	//conf
+} global;
 
 // 迷路のサイズ WxH
 #define CWIDTH  33
 #define CHEIGHT 33
 // キャラクターの縦横サイズ(正方形)
 #define SPSIZE  60
-
-// BUGの個数
-constexpr int bugs = 8;
-constexpr int players = 3;
 
 // stopper, bug sleeping time
 constexpr int sleeptime = 350;
@@ -59,10 +75,10 @@ constexpr auto NHUMER  = 0b001000000000000000; // 32768;
 // 13,14,15,16: Man with Hammer
 // 17,18,19,20: Hammer
 /*
-	考え方
-	1. drawmapには、char毎に2x2の領域を取る。
-	2. 左上は、charの情報、向き、
-	3. 他の3つは、CMASKのみ (16になる。)
+
+
+
+
 */
 
 // direction of bugs and man.
@@ -201,7 +217,7 @@ public:
 
 };
 
-// ゲーム中 (D3D の
+// ゲーム中 の共有データ
 struct GameData
 {
 	int bugs;	// number of bugs
@@ -216,23 +232,13 @@ struct GameData
 };
 using App = SceneManager<String, GameData>;
 
-// grobal variable.
-struct Grobal
-{
-	int highscore = 0;
-	boolean ingame = false;
-	Stopwatch stopwatch;
-	boolean enableSound = false;
-	boolean NODEAD = false;
-} global;
-
 
 class GameSound {
-	const Audio walk{      Audio::Stream, Resource(U"Sounds/Walk.mp3"), Loop::No };
-	const Audio eaten{     Audio::Stream, Resource(U"Sounds/Eaten.mp3"), Loop::No };
-	const Audio exit{      Audio::Stream, Resource(U"Sounds/Exit.mp3"), Loop::No };
+	const Audio walk{      Audio::Stream, Resource(U"Sounds/Walk.mp3"),      Loop::No };
+	const Audio eaten{     Audio::Stream, Resource(U"Sounds/Eaten.mp3"),     Loop::No };
+	const Audio exit{      Audio::Stream, Resource(U"Sounds/Exit.mp3"),      Loop::No };
 	const Audio hammerBug{ Audio::Stream, Resource(U"Sounds/HammerBug.mp3"), Loop::No };
-	const Audio hammerNo{  Audio::Stream, Resource(U"Sounds/HammerNo.mp3"), Loop::No };
+	const Audio hammerNo{  Audio::Stream, Resource(U"Sounds/HammerNo.mp3"),  Loop::No };
 public:
 	boolean enableSound;
 
@@ -289,6 +295,7 @@ public:
 };
 
 //
+/// opening demo..
 class Title : public App::Scene
 {
 private:
@@ -387,19 +394,6 @@ public:
 	// 描画関数（オプション）
 	void draw() const override
 	{
-		// Scene::SetBackground(ColorF{ 0.3, 0.4, 0.5 });
-		// FontAsset(U"TitleFont")(U"My Game").drawAt(400, 100);
-		// Circle{ Cursor::Pos(), 50 }.draw(Palette::Orange);
-
-
-		// int ly = 0, lx = 20;
-		// for (int i = 0; i < showingmessage.size(); i++)
-		// {
-		// 	s3d::String m = showingmessage[i];
-		// 	FontAsset(U"PC8001")(m).draw(lx, ly, Palette::Lightgreen);
-
-		// 	ly += 24;
-		// }
 		for (int yy = 0; yy <= l; yy++)
 		{
 			String m = demomessage[yy].m;
@@ -420,7 +414,7 @@ public:
 };
 
 
-// Title Scene
+// Title Scene, Key bindings.
 class Title2 : public App::Scene
 {
 private:
@@ -480,7 +474,7 @@ public:
 		// Title でframerateを計測して、ゲーム開始時(Titleのデコンストラクタ)に6倍で設定する。
 		// 極端に遅い場合の対策だけど、極端に速い場合の対策はしていない
 		// 60Hzほぼ専用
-		//■■■■■■■■■■■■■■■■■■■■■■ ■■■■■■■■■■■■■■■■■■■■■■ ■■■■■■■■■■■■■■■■■■■■■■
+		//
 		if (counts < 100)
 		{
 			counts += 1;
@@ -763,7 +757,7 @@ public:
 	{
 		global.stopwatch.start();
 		getData().score = 0;
-		getData().men = players;
+		getData().men = global.players;
 		getData().screen = 0;
 	};
 
@@ -799,7 +793,7 @@ public:
 		//面数の更新
 		getData().screen += 1;
 		//BUG数の更新
-		getData().bugs = bugs;
+		getData().bugs = global.bugs;
 		getData().time = 99;
 		//迷路の初期化
 		getData().mazelevel = getData().maze.Generate();
@@ -1298,7 +1292,7 @@ public:
 
 	// Characters...
 	CStopper cstopper[8];
-	CBug cbug[bugs];
+	CBug *cbug;
 
 	// Texture Define..
 	const Texture bug[4][2] =
@@ -1349,6 +1343,8 @@ public:
 	Game(const InitData& init)
 		:IScene{ init }
 	{
+		cbug = new CBug[global.bugs];
+
 		drawmap.init(getData().maze);
 		// start location 32,64 (16,32)
 		cx = int(CWIDTH / 2);
@@ -1375,7 +1371,7 @@ public:
 		Console << U"State:NORMAL";
 #endif
 
-		for (int i = 0; i < bugs; i++)
+		for (int i = 0; i < global.bugs; i++)
 		{
 			cstopper[i].init();
 			// cbug[i].init(); // Reset bugs before Schese
@@ -1383,14 +1379,14 @@ public:
 
 		if (!global.ingame)
 		{
-			for (int i = 0; i < bugs; i++)
+			for (int i = 0; i < global.bugs; i++)
 			{
 				cbug[i].init(); // Reset bugs before Schese
 			}
 		}
 
 		// 死亡後などで、bugが8匹分初期化されるため、消した分を殺す。
-		for (int i = 0; i < bugs - getData().bugs; i++)
+		for (int i = 0; i < global.bugs - getData().bugs; i++)
 		{
 			cbug[i].live = false;
 			cbug[i].x = -1;
@@ -1708,7 +1704,7 @@ public:
 				// Bugに食われているか？
 				if (!global.NODEAD) {  // 死亡しないモード
 					int bugno = -1;
-					for (int i = 0; i < bugs; i++)
+					for (int i = 0; i < global.bugs; i++)
 					{
 						if (
 							(cbug[i].live)
@@ -1726,7 +1722,7 @@ public:
 						playerstate = DEAD;
 #ifdef _DEBUG4_
 						Console << U"State:DEAD";
-#endif
+#endif // _DEBUG4_
 
 						eat.manx = cx;
 						eat.many = cy;
@@ -1738,7 +1734,7 @@ public:
 						// break; ■■■■■■■■■■■breakでいいのか？？？
 					}
 				}
-#endif
+#endif // _NODEAD_
 
 
 				// ハンマー処理
@@ -1767,7 +1763,7 @@ public:
 				}
 
 				//bug を 移動する
-				for (int i = 0; i < bugs; i++)
+				for (int i = 0; i < global.bugs; i++)
 				{
 					if (cbug[i].live)
 					{
@@ -1889,7 +1885,7 @@ public:
 				int bugnum = -1;
 
 				//何番の bug かを見極める。
-				for (int i = 0; i < bugs; i++) {
+				for (int i = 0; i < global.bugs; i++) {
 					if (
 						((cbug[i].x == hx) && (cbug[i].y == hy))
 						||
@@ -2067,7 +2063,6 @@ public:
 			return;
 		}
 
-
 		int f = ((spawnTime / 2) <= accumulator) ? 1 : 0;
 		int delta=0;
 		int ddx = 0, ddy = 0;
@@ -2085,12 +2080,6 @@ public:
 			if (nextDir == DIRDOWN)  ddy = delta;
 			if (nextDir == DIRRIGHT) ddx = delta;
 			if (nextDir == DIRLEFT)  ddx = -delta;
-
-			//debug
-			//if ((getData().bugs == 0) && (nextDir != 0))
-			//{
-			//	Console << U"DIR:{}, ddx:{}, ddy{}"_fmt(nextDir, ddx, ddy);
-			//}
 		}
 
 		int limitx = 11, limity = 7;
@@ -2196,16 +2185,6 @@ public:
 					eaten[d][0].draw(dx, dy);
 					break;
 				}
-				// case HUMMAN + DIRSTAY:
-				// case HUMMAN + DIRUP:
-				// case HUMMAN + DIRDOWN:
-				// case HUMMAN + DIRRIGHT:
-				// case HUMMAN + DIRLEFT:
-				// case HUMBUG + DIRSTAY:
-				// case HUMBUG + DIRUP:
-				// case HUMBUG + DIRDOWN:
-				// case HUMBUG + DIRRIGHT:
-				// case HUMBUG + DIRLEFT:
 				case HUMMAN:
 				case HUMBUG:
 				{
@@ -2216,16 +2195,6 @@ public:
 					hman[d][p].draw(dx, dy);
 					break;
 				}
-				// case NHMMAN + DIRSTAY:
-				// case NHMMAN + DIRUP:
-				// case NHMMAN + DIRDOWN:
-				// case NHMMAN + DIRRIGHT:
-				// case NHMMAN + DIRLEFT:
-				// case NHUMER + DIRSTAY:
-				// case NHUMER + DIRUP:
-				// case NHUMER + DIRDOWN:
-				// case NHUMER + DIRRIGHT:
-				// case NHUMER + DIRLEFT:
 				case NHMMAN:
 				case NHUMER:
 				{
@@ -2285,6 +2254,11 @@ public:
 		FontAsset(U"PC8001")(U"ALIEN").draw(lx, ly + 24 * 10);
 		FontAsset(U"PC8001")(U"{}"_fmt(getData().bugs)).draw(lx + 12 * 3, ly + 24 * 12);
 	}
+
+	~Game()
+	{
+		delete[] cbug;
+	};
 };
 
 void Main()
@@ -2297,7 +2271,7 @@ void Main()
 	System::SetTerminationTriggers(UserAction::CloseButtonClicked);
 
 	// 拡大縮小時に最近傍法で補間  // default Texture::Linear
-	Scene::SetTextureFilter(TextureFilter::Nearest);
+	//Scene::SetTextureFilter(TextureFilter::Nearest);
 
 	FontAsset::Register(U"PC8001", 22, Resource( U"font/DotGothic16-Regular.ttf" ));
 	//FontAsset::Register(U"PC8001", 22, Resource( U"font/PC-8001.ttf" ));
@@ -2321,8 +2295,6 @@ void Main()
 	manager.add<Game>(U"Game");
 	manager.add<GameOver>(U"GameOver");
 
-	//manager.add<DebugDraw>(U"DebugDraw");
-	//manager.init(U"DebugDraw");
     //manager.init(U"GameOver");
 
 	Scene::SetResizeMode(ResizeMode::Keep);
