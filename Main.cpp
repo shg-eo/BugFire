@@ -1521,18 +1521,12 @@ public:
 						||
 						(getData().score < 0))
 					{
+						if (getData().score < 0) {
+							getData().score = 0;
+						}
 						int p = (getData().men -= 1);
-						if ((p <= 0)
-							||
-							(getData().score < 0))
+						if (p <= 0)
 						{
-#ifdef _DEBUG4_
-							getData().score = 10;
-#endif
-							if (getData().score < 0)
-							{
-								getData().score = 0;
-							}
 							changeScene(U"GameOver", 0s);
 						}
 						else
