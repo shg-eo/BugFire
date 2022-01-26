@@ -735,9 +735,6 @@ public:
 	void draw() const override
 	{
 		int ly = 12, lx = 3;
-		//const Font font{22, U"Font/DotGothic16-Regular.	Window::SetStyle(WindowStyle::Sizable);ttf"};
-		//const Font font{22};
-		//font(U"SCORE").draw(300, 300);
 		for (s3d::String m : message)
 		{
 			//	font(U"SCORE").draw(300, 300);
@@ -829,7 +826,6 @@ public:
 #ifdef _DEBUG_
 		if (DEBUG) Print << U"StartGame:";
 #endif
-		// ■■■■■■■■■■■■■■■■未実装
 		// 中間報告の表示
 		message[0] = U"　　　　　　　　　　　 チュウカンホウコク";
 		message[1] = U"　　　　　タ゛イ　{}　メン"_fmt(Mstring::itoz(getData().screen, 2));
@@ -917,10 +913,6 @@ public:
 	};
 	Playerstate playerstate,prevstate;
 	boolean pause = false;
-
-
-
-//private:
 
 	class Vector
 	{
@@ -1105,9 +1097,6 @@ public:
 				live = true;
 				lifetime = stoppertime;
 			}
-			// Print << U"Put X:" << lx << U"Y:" << ly;
-			// DateTime date = DateTime::Now();
-			// Print << U"PutTime:" << date.minute << U":" << date.second << U"." << date.milliseconds;
 
 		}
 		void remove(Map4draw& drawmap)
@@ -1117,17 +1106,13 @@ public:
 				erase(drawmap);
 			}
 			live = false;
-
-			// Print << U"Del X:" << x << U"Y:" << y;
-			// DateTime date = DateTime::Now();
-			// Print << U"DelTime:" << date.minute << U":" << date.second << U"." << date.milliseconds;
 		}
 		void doing(Map4draw& drawmap)
 		{
 			lifetime -= 1;
 			if (lifetime <= 0)
 			{
-				remove(drawmap);  // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+				remove(drawmap);
 			}
 		}
 	};
@@ -1627,8 +1612,6 @@ public:
 					lfKey = (KeyLeft  | KeyNum4 | KeyA).pressed(),
 					hmKey = (KeyShift | KeyControl ).pressed(),
 					stKey = (KeyX     | KeySpace).pressed();
-				//	Print << U"KeyIN:" << upKey << dnKey << rtKey << lfKey << hmKey << stKey;
-				//if ((cx % 2 == 0) && (cy % 2 == 0))
 				if (lfKey)
 				{
 					nextDir = DIRLEFT;
@@ -1990,12 +1973,6 @@ public:
 		Vector v;
 		v.next(nextDir);
 
-		// Print << U"CX:" << cx << U" CY:" << cy << U" DIR:" << nextDir;
-		// Print << U"v.x:" << v.x << U" v.y:" << v.y;
-		// Print << U"v.dx:" << v.dx << U" v.dy:" << v.dy;
-
-			//LEFT:   3 -> (3-1) & 254 = 2, 4 -> (4-1) &254 = 2
-			//RIGHT:  5 -> 5+2 &254 =6,     4 -> 4+2 &254 = 6
 		if (
 			((drawmap.map[(cx + v.x)][(cy + v.y)] & CDMASK) != WALL)
 			&&
@@ -2090,9 +2067,6 @@ public:
 				{
 					continue;
 				}
-				//if (yy == drawmap.height) Print << U"HEIGHT:" << drawmap.height;
-				//int dx = i * SPSIZE / 2 - SPSIZE / 2;
-				//int dy = j * SPSIZE / 2 + SPSIZE / 2;
 				int dx = i * SPSIZE - ddx;
 				int dy = j * SPSIZE - ddy;
 				int c = drawmap.map[xx][yy];
@@ -2135,7 +2109,6 @@ public:
 #ifdef _DEBUG3_
 					if (DEBUG3) s3d::Console << U"cbug:{} Bug:{},{},{},F{}"_fmt(cbug[0].direction, c, c & 3, d, f);
 #endif
-					//bug[d][frame1st ? 0 : 1].draw(dx, dy);
 					if (
 						((c & CDMASK) != SLPBUG)
 						&&
@@ -2155,11 +2128,6 @@ public:
 						}
 					}
 					bug[d][f].draw(dx, dy);
-					// //debug
-					// if (getData().bugs == 0)
-					// {
-					// 	Console << U"acc:{} D+1:{},delta{}, dx:{}, dy{}"_fmt(accumulator, d + 1, delta, dx, dy);
-					// }
 
 					break;
 				}
@@ -2203,7 +2171,6 @@ public:
 				}
 				default:
 				{
-					//if (((xx % 2) == 0) && ((yy % 2) == 0)) path.draw(dx, dy);
 					path.draw(dx, dy);
 					break;
 
