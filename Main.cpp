@@ -67,19 +67,12 @@ constexpr auto NHMMAN  = 0b000100000000000000; // 16384;
 constexpr auto NHUMER  = 0b001000000000000000; // 32768;
 
 // 0: no (path)
-// 1: Wall
 // 32: Wall2 (見えない壁)
 // 2: Stopper
 // 4,5,6,7,8: Man (Stop, U, D, R, L)
 // 9,10,11,12: Bug (U,D,R,L)
 // 13,14,15,16: Man with Hammer
 // 17,18,19,20: Hammer
-/*
-
-
-
-
-*/
 
 // direction of bugs and man.
 constexpr auto DIRSTAY  = 0;
@@ -131,11 +124,6 @@ public:
 			{
 				maze[x][y] = WALL; // 棒を立てる
 
-			//	if (rnd() % 5 == 0) // 1/5 で倒さない
-			//	{
-			//	    continue;
-			//	}
-
 				// 倒せるまで繰り返す
 				int direction = rnd() % 4;
 				while (true)
@@ -159,7 +147,7 @@ public:
 					}
 					else
 					{
-						// s3d::Console.WriteLine("SameDirection");
+						// same direction.
 					}
 
 					// 棒を倒す方向を決める
@@ -191,24 +179,9 @@ public:
 		}
 
 		// special 出入口の前の壁を開けておく
-		//maze[(width - 1) / 2][0] = Path; // Exit
 		maze[(width - 1) / 2][1] = PATH; // Exit -1
-		//maze[(width - 1) / 2][2] = PATH; // Exit -1 // for Debuging Print;
 		maze[(width - 1) / 2][height - 2] = PATH; // Enter -1
 		maze[(width - 1) / 2][height - 1] = 3;// Enter
-
-		// for (int i = 0; i < width; i++) {
-		// 	String s;
-		// 	for (int j = 0; j < width; j++) {
-		// 		if (maze[j][i] == WALL) {
-		// 			s += U"╋";
-		// 		}
-		// 		else {
-		// 			s += U" ";
-		// 		}
-		// 	}
-		// 	s3d::Console << s;
-		// }
 
 		// level は 150 ぐらい。大きいほど単純化するから、
 		// 100 - lebel /3
